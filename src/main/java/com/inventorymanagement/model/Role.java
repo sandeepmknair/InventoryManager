@@ -1,14 +1,12 @@
 package com.inventorymanagement.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.Data;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "auth_role")
+@Data
 public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,29 +19,4 @@ public class Role {
 	@Column(name = "role_desc")
 	private String desc;
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	public String getDesc() {
-		return desc;
-	}
-
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
-	
-	
 }
