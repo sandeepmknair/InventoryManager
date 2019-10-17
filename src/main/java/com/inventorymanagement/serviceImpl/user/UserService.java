@@ -1,23 +1,25 @@
 package com.inventorymanagement.serviceImpl.user;
 
-import com.inventorymanagement.model.User;
+import com.inventorymanagement.model.user.User;
+import com.inventorymanagement.model.user.UserDTO;
 import com.inventorymanagement.repository.UserRepository;
 import com.inventorymanagement.serviceImpl.BaseServiceConvertorImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("userService")
-public class UserService extends BaseServiceConvertorImpl<User, User> {
+public class UserService extends BaseServiceConvertorImpl<UserDTO, User> {
 
     @Autowired
     public UserService(final UserRepository userRepository) {
         super(userRepository,
-                (user) -> User.toBuilder(user).build(),
-                (liveChat) -> User.toBuilder(user).build());
+                (userDTO) -> User.toBuilder(userDTO).build(),
+                (user) -> UserDTO.toBuilder(user).build());
     }
 
     @Override
-    protected User buildToPersistObject(Long id, User entityObject) {
-        return new User();
+    protected User buildToPersistObject(Long id, UserDTO userDTO) {
+        return User.toBuilder(userDTO).on(userdto -> userdto.getId()).set(id)
+                .build();
     }
 }
