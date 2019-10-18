@@ -27,11 +27,6 @@ public class AuthenticationRestController extends BaseController<UserDTO> {
         this.userService = userService;
     }
 
-    @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
-    public ResponseEntity<UserDTO> getMessage() {
-        return Optional.ofNullable(new User())//TO DO get From Service
-                .map(e -> new ResponseEntity(e, HttpStatus.OK))
-                .orElse(new ResponseEntity(Constants.Error.NOTFOUND, HttpStatus.NOT_FOUND));
-    }
+
 
 }
